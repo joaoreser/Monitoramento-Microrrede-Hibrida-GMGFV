@@ -210,7 +210,7 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 
 ---
 
-## Aviso sobre propriedade intelectual
+## Aviso 
 
 O conteúdo deste repositório destina-se a fins de **estudo e reprodução do sistema de monitoramento** (aquisição, comunicação e visualização de dados).
 
