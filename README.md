@@ -121,7 +121,7 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 │   ├── SPIrasp/             # Leitura SPI dos dados vindos do DSP
 │   └── grafana/             # Dashboards exportados (.json)
 ├── docs/
-│   ├── Estrutura do Projeto.png      # Diagrama do sistema
+│   ├── Estrutura do Projeto          # Representação do sistema
 │   └── Dashboard                     # Print da dashboard
 ├── LICENSE
 └── README.md
