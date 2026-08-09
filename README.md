@@ -122,7 +122,7 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 │   └── grafana/             # Dashboards exportados (.json)
 ├── docs/
 │   ├── Estrutura do Projeto.png      # Diagrama do sistema
-│   └── imagens/                      # Print da dashboard
+│   └── Dashboard                     # Print da dashboard
 ├── LICENSE
 └── README.md
 ```
