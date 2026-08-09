@@ -152,7 +152,7 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 # Habilitar a interface SPI
 sudo raspi-config   # Interface Options → SPI → Enable
 
-# Dependências do leitor SPI / exporter (exemplo em Python)
+# Dependências do leitor SPI 
 sudo apt update
 sudo apt install -y python3-pip
 pip3 install spidev prometheus_client
