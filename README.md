@@ -13,14 +13,12 @@
 ## Sumário
 
 - [Sobre o projeto](#sobre-o-projeto)
-- [Arquitetura do sistema](#arquitetura-do-sistema)
 - [Fluxo de dados e protocolos](#fluxo-de-dados-e-protocolos)
 - [Hardware utilizado](#hardware-utilizado)
 - [Stack de software](#stack-de-software)
 - [Estrutura do repositório](#estrutura-do-repositório)
 - [Como reproduzir](#como-reproduzir)
 - [Configuração do Prometheus e Grafana](#configuração-do-prometheus-e-grafana)
-- [Resultados](#resultados)
 - [Autores e créditos](#autores-e-créditos)
 - [Aviso sobre propriedade intelectual](#aviso-sobre-propriedade-intelectual)
 - [Licença](#licença)
@@ -50,8 +48,8 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 |---|---|---|---|---|
 | Inversor fotovoltaico (Growatt) → Arduino | Serial | **Modbus** | — | Arduino Nano |
 | Arduino Nano → DSP | Serial | **SCI (UART)** | mestre da leitura | DSP |
-| Gerador a diesel (Cummins) | Barramento CAN (MCP2551) | **CAN** | nó CAN | DSP |
-| Inversor filtro ativo (SiC) | Cabo de rede (rj45) | **Leitura dos sensores** ¹ | **escravo** | DSP |
+| Gerador a diesel (Cummins) | Wattímetro) | **CAN** | nó CAN | DSP |
+| Inversor filtro ativo (SiC) | Cabo de rede (Ethernet) | **Ethernet** ¹ | **escravo** | DSP |
 | DSP → Servidor | SPI | **SPI** | escravo do RPi ² | Raspberry Pi |
 | Raspberry Pi | Rede local | HTTP (scrape) | — | Prometheus |
 | Prometheus → Visualização | Rede local | Query (PromQL) | — | Grafana |
@@ -116,15 +114,15 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 .
 ├── firmware/
 │   ├── dsp/                 # Código do DSP (concentrador central)
-│   └── arduino/             # Sketch de leitura do inversor FV (SCI)
-├── raspberry-pi/
-│   ├── spi_reader/          # Leitura SPI dos dados vindos do DSP
-│   ├── prometheus/          # prometheus.yml e configuração de scrape
+│   ├── dsp/                 # Código do DSP (Config_can)
+│   ├── dsp/                 # Código do DSP (Config_spi)
+│   ├── dsp/                 # Código do DSP (config_sci)
+│   └── arduino/             # Sketch de leitura do inversor FV (CódigoSCI_MODBUS)
+│   ├── SPIrasp/             # Leitura SPI dos dados vindos do DSP
 │   └── grafana/             # Dashboards exportados (.json)
 ├── docs/
-│   ├── arquitetura.png      # Diagrama do sistema
-│   ├── protocolos.md        # Detalhamento de SCI, CAN, SPI (frames/mapas)
-│   └── imagens/             # Fotos do setup, prints dos dashboards
+│   ├── Estrutura do Projeto.png      # Diagrama do sistema
+│   └── imagens/                      # Print da dashboard
 ├── LICENSE
 └── README.md
 ```
@@ -206,10 +204,7 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 
 ## Resultados
 
-```markdown
-![Dashboard Grafana](docs/imagens/dashboard.png)
-![Setup físico](docs/imagens/setup.png)
-```
+Documentos anexados
 
 ---
 
