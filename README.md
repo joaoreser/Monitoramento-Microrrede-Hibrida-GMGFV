@@ -48,13 +48,13 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 |---|---|---|---|---|
 | Inversor fotovoltaico (Growatt) → Arduino | Serial | **Modbus** | — | Arduino Nano |
 | Arduino Nano → DSP | Serial | **SCI (UART)** | mestre da leitura | DSP |
-| Gerador a diesel (Cummins) | Wattímetro) | **CAN** | nó CAN | DSP |
-| Inversor filtro ativo (SiC) | Cabo de rede (Ethernet) | **Ethernet** ¹ | **escravo** | DSP |
+| Gerador a diesel (Cummins) → Wattímetro | Barramento CAN | **CAN** | nó CAN | DSP |
+| Inversor filtro ativo (SiC) | RJ45 | **ADC** ¹ | **escravo** | DSP |
 | DSP → Servidor | SPI | **SPI** | escravo do RPi ² | Raspberry Pi |
 | Raspberry Pi | Rede local | HTTP (scrape) | — | Prometheus |
 | Prometheus → Visualização | Rede local | Query (PromQL) | — | Grafana |
 
-¹ A comunicação com o inversor filtro ativo era feita por cabo de rede, com o **DSP operando como escravo** através da leitura dos sensores alocados no protótipo via **ADC**.
+¹ A comunicação com o inversor filtro ativo era feita por cabo de rede, com o **DSP operando como escravo** através da leitura dos sinais analógicos diretos dos sensores de corrente e tensão.
 ² Na ligação SPI, o Raspberry Pi atua como *master* e o DSP como *slave* (configuração padrão para SPI com Linux) — confirme se corresponde à sua implementação.
 
 ---
@@ -117,7 +117,7 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 │   ├── dsp/                 # Código do DSP (Config_can)
 │   ├── dsp/                 # Código do DSP (Config_spi)
 │   ├── dsp/                 # Código do DSP (config_sci)
-│   └── arduino/             # Sketch de leitura do inversor FV (CódigoSCI_MODBUS)
+│   ├── arduino/             # Sketch de leitura do inversor FV (CódigoSCI_MODBUS)
 │   ├── SPIrasp/             # Leitura SPI dos dados vindos do DSP
 │   └── grafana/             # Dashboards exportados (.json)
 ├── docs/
@@ -199,12 +199,6 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 2. Adicionar o **Prometheus** como *data source* (`http://<ip-do-rpi>:9090`).
 3. Importar os dashboards de `raspberry-pi/grafana/` (arquivos `.json`).
 
-
----
-
-## Resultados
-
-Documentos anexados
 
 ---
 
