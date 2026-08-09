@@ -45,41 +45,6 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 
 ---
 
-## Arquitetura do sistema
-
-```mermaid
-flowchart LR
-    subgraph Fontes["Fontes da microrrede"]
-        PV["Inversor Fotovoltaico"]
-        GMG["Gerador a Diesel (GMG)"]
-        AF["Inversor Filtro Ativo<br/>(estabilização)"]
-    end
-
-    ARD["Arduino<br/>(interface de leitura FV)"]
-
-    subgraph Central["Processamento central"]
-        DSP["DSP<br/>Concentrador de dados"]
-    end
-
-    subgraph Servidor["Servidor local"]
-        RPI["Raspberry Pi"]
-        PROM[("Prometheus<br/>banco de séries temporais")]
-        GRAF["Grafana<br/>Dashboards"]
-    end
-
-    PV -->|leitura| ARD
-    ARD -->|SCI / UART| DSP
-    GMG -->|CAN| DSP
-    AF -->|"(protocolo)"| DSP
-    DSP -->|SPI| RPI
-    RPI --> PROM
-    PROM --> GRAF
-```
-
-O **DSP** é o nó central: ele agrega as leituras das três fontes e as entrega ao **Raspberry Pi** via **SPI**. O Raspberry Pi atua como **servidor local**, escrevendo as amostras no **Prometheus**, que por sua vez alimenta os painéis do **Grafana**.
-
----
-
 ## Fluxo de dados e protocolos
 
 | Origem dos dados | Interface física | Protocolo | Papel do DSP | Destino |
