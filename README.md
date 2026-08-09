@@ -20,7 +20,7 @@
 - [Como reproduzir](#como-reproduzir)
 - [Configuração do Prometheus e Grafana](#configuração-do-prometheus-e-grafana)
 - [Autores e créditos](#autores-e-créditos)
-- [Aviso sobre propriedade intelectual](#aviso-sobre-propriedade-intelectual)
+- [Aviso](#aviso)
 - [Licença](#licença)
 - [Referências](#referências)
 
@@ -212,7 +212,7 @@ docker run -d --name grafana -p 3000:3000 grafana/grafana
 
 ## Aviso sobre propriedade intelectual
 
-O **inversor do tipo filtro ativo** utilizado para estabilização elétrica é objeto de **patente**. O conteúdo deste repositório destina-se a fins de **estudo e reprodução do sistema de monitoramento** (aquisição, comunicação e visualização de dados).
+O conteúdo deste repositório destina-se a fins de **estudo e reprodução do sistema de monitoramento** (aquisição, comunicação e visualização de dados).
 
 ---
 ## Licença
