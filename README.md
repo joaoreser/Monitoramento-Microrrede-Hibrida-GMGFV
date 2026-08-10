@@ -2,7 +2,7 @@
 
 > 📡 Sistema de comunicação e visualização de dados em tempo real para uma microrrede híbrida **Gerador a Diesel (GMG) + Fotovoltaica (FV)**, com suporte à **estabilização elétrica** por meio de um inversor do tipo **filtro ativo**. Os dados de todas as fontes são centralizados em um **DSP**, encaminhados a um **Raspberry Pi** (servidor local) e disponibilizados em **dashboards do Grafana**, com **Prometheus** como banco de dados de séries temporais.
 
-!--
+
 ![Status](https://img.shields.io/badge/status-concluído-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/DSP-C2000-red)
