@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'spi_prometheus'
+    static_configs:
+      # Lembre-se de verificar se o IP local do Raspberry Pi se manteve este mesmo
+      - targets: ['192.168.1.116:8000']

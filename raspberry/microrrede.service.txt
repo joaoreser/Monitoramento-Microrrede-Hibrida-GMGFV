@@ -1,0 +1,14 @@
+[Unit]
+Description=Servico de Monitoramento da Microrrede Hibrida (Python Exporter)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/embrapi/spic2000.py
+WorkingDirectory=/home/embrapi
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=embrapi
+
+[Install]
+WantedBy=multi-user.target
