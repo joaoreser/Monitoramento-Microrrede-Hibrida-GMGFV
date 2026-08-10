@@ -49,12 +49,12 @@ A arquitetura proposta mostrou-se **escalável e replicável**, podendo ser apli
 | Inversor fotovoltaico (Growatt) → Arduino | Serial | **Modbus** | — | Arduino Nano |
 | Arduino Nano → DSP | Serial | **SCI (UART)** | mestre da leitura | DSP |
 | Gerador a diesel (Cummins) → STM32 | Barramento CAN | **CAN** | nó CAN | DSP |
-| Inversor filtro ativo (SiC) | RJ45 / Micro-Match | **ADC** ¹ | **escravo** | DSP |
+| Inversor filtro ativo (SiC) | RJ45  | **Envio por pacotes** ¹ | **escravo** | DSP |
 | DSP → Servidor | SPI | **SPI** | escravo do RPi ² | Raspberry Pi |
 | Raspberry Pi | Rede local | HTTP (scrape) | — | Prometheus |
 | Prometheus → Visualização | Rede local | Query (PromQL) | — | Grafana |
 
-> ¹ A comunicação com o inversor filtro ativo era feita por cabos diretos na placa, com o **DSP operando como escravo** através da leitura dos sinais analógicos diretos dos sensores de corrente e tensão utilizando conversores A/D.\
+> ¹ A comunicação com o inversor filtro ativo era feita por cabos diretos na placa, com o **DSP operando como escravo** através da leitura dos sinais analógicos diretos dos sensores de corrente e tensão utilizando conversores A/D e sendo enviados através de pacotes, ou seja, um vetor com X posições.\
 > ² Na ligação SPI, o Raspberry Pi atua como *master* e o DSP como *slave*.
 
 ---
